@@ -28,13 +28,16 @@ class Vehicle {
     // 单独的方法用于更新和渲染 Vehicle
     run(target) {
         this.physics.update();
-
+        fill(255, 0, 0 );
+        circle(target.pos.x, target.pos.y, 16);
         for (let motor of this.motors) {
             let force;
             if (this.shouldFlee) {
-                force = motor.flee(target);
+                force = motor.flee(target.pos);
+                fill(255,0,0);
             } else {
-                force = motor.seek(target);
+              fill(0,255,0);
+                force = motor.seek(target.pos);
             }
             motor.applyForce(force);
 
@@ -45,7 +48,7 @@ class Vehicle {
             pg.point(motor.pos.x, motor.pos.y);
         }
 
-        stroke(0);
+
         line(this.motors[0].pos.x, this.motors[0].pos.y, this.motors[1].pos.x, this.motors[1].pos.y);
 
         noStroke();
