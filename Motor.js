@@ -67,7 +67,10 @@ class Motor{
     push();
     translate(this.pos.x,this.pos.y);
     rotate(this.vel.heading());
-    triangle(-this.r,-this.r/2,-this.r,this.r/2,this.r,0);
+    // triangle(-this.r,-this.r/2,-this.r,this.r/2,this.r,0);
+    rectMode(CENTER);
+    fill(255,10);
+    rect(0,0,20,20);
     pop();
   }
   
