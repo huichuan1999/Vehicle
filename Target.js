@@ -4,7 +4,7 @@ class Target{
   constructor(pos, targetType, targetRadius, targtStrength){
     this.pos = pos;
     this.velocity = p5.Vector.random2D();
-    this.targetType = Math.random() < 0.5;
+    this.targetType = targetType;
     this.targetRadius = targetRadius;
     this.targtStrength = targtStrength;
     this.speed = 1;

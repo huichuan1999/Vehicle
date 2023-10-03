@@ -35,7 +35,7 @@ class Vehicle {
         circle(target.pos.x, target.pos.y, 16);
         for (let motor of this.motors) {
             let force;
-            if (this.shouldFlee) {
+            if (this.shouldFlee * target.targetType) {
                 force = motor.flee(target.pos);
                 fill(255,0,0);
             } else {
