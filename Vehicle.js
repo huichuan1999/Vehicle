@@ -1,10 +1,11 @@
 
 class Vehicle {
-    constructor(pos1, pos2, springLength, springStrength, shouldFlee) {
+    constructor(pos1, pos2, springLength, jitter, shouldFlee) {
         this.motors = [];
         this.physics = new toxi.physics2d.VerletPhysics2D();
         //一个布尔值，true是逃离，false是跟随
         this.shouldFlee = shouldFlee;
+        this.jitter = jitter;
 
         // 创建两个motor对象
         this.motors[0] = new Motor(pos1.x, pos1.y);
@@ -19,7 +20,7 @@ class Vehicle {
             this.motors[0].particle,
             this.motors[1].particle,
             springLength,
-            springStrength
+            0.1
         );
         this.physics.addSpring(spring);
     }
@@ -38,7 +39,7 @@ class Vehicle {
             motor.applyForce(force);
 
             motor.update();
-            motor.randomSwing(0.5);
+            motor.randomSwing(this.jitter);
             motor.show();
 
             pg.point(motor.pos.x, motor.pos.y);
