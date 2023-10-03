@@ -1,11 +1,13 @@
 
 class Motor{
-  constructor(x,y){
+  constructor(x,y,maxSpeed,maxForce){
     this.pos = createVector(x,y);
     this.vel = createVector(0,0);
     this.acc = createVector(0,0);
-    this.maxSpeed = 6;
-    this.maxForce = 0.25;
+    this.maxSpeed = maxSpeed;
+    this.maxForce = maxForce;
+    // this.maxSpeed = 6;
+    // this.maxForce = 0.25;
     this.r = 15;//三角形的大小
     
     this.particle = new toxi.physics2d.VerletParticle2D(new toxi.geom.Vec2D(x, y));

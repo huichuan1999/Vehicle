@@ -18,9 +18,15 @@ function setup() {
     //最后一个true是逃离，false是跟随
     //vehicle = new Vehicle(createVector(width/3, height/2), createVector(2*width/3, height/2), 200, 0.1,false);
     //随机设置vehicle逃离还是跟随
+    
+    let pos1 = createVector(random(width), random(height));
+    let pos2 = (random(width), random(height));
+    let springLength = random(30,150);
+    let maxSpeed = 4;
+    let maxForce = 0.25;
+    let jitter =  random(0, 0.7);
     let shouldFlee = Math.random() < 0.5; // 50% 的概率为 true, 50% 为 false
-    //倒数第二个random(0, 0.7)是随机的抖动程度
-    vehicle = new Vehicle(createVector(random(width), random(height)), (random(width), random(height)), random(70, 200), random(0, 0.7), shouldFlee);
+    vehicle = new Vehicle(pos1, pos2, springLength, maxSpeed, maxForce, jitter, shouldFlee);
     vehicles.push(vehicle);
   }
 
