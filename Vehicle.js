@@ -45,12 +45,12 @@ class Vehicle {
             motor.applyForce(force);
             motor.update();
             motor.randomSwing(this.jitter);
-            motor.show();
+            //motor.show();
             stroke(0,20);
-            pg.point(motor.pos.x, motor.pos.y);
+            point(motor.pos.x, motor.pos.y);
         }
 
-
+        stroke(0,20);
         line(this.motors[0].pos.x, this.motors[0].pos.y, this.motors[1].pos.x, this.motors[1].pos.y);
 
         // noStroke();

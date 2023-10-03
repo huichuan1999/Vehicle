@@ -21,7 +21,7 @@ function setup() {
     let springLength = random(30,150);
     let maxSpeed = 2;
     let maxForce = 0.25;
-    let jitter =  random(0, 0.3);
+    let jitter =  random(0, 0.5);
     let shouldFlee = Math.random() < 0.5; // 50% 的概率为 true, 50% 为 false
 
     vehicle = new Vehicle(pos1, springLength, maxSpeed, maxForce, jitter, shouldFlee);
@@ -42,7 +42,7 @@ for(let i=0;i < numTargets ; i++){
 }
 
 function draw() {
-  background(255);
+  //background(255);
   // fill (0,100);
   // target = createVector(mouseX, mouseY);
   // circle(target.x, target.y, 16);
@@ -55,12 +55,17 @@ function draw() {
 
     for (let target of targets){
       target.orbit();
-      target.show();
+      //target.show();
     for(let vehicle of vehicles){
       vehicle.run(target); // 传递 target 给 Vehicle 对象，让它决定如何运动
     }
   }
+  
   image(pg, 0, 0);
+  if (frameCount % 10 === 0) {
+    fill(255, 5);  // 白色，半透明
+    rect(0, 0, width, height);  // 绘制一个覆盖整个画布的矩形
+  }
 }
 
 function saveImage() {
