@@ -2,9 +2,10 @@
 let targets = [];
 let pg;
 let vehicles = [];
-let numVehicles = 3;
+let numVehicles = 20;
 let lightSources = [];
-let numTargets = 4;
+let numTargets = 5;
+let randomValue = randomBoolean();
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -26,7 +27,9 @@ function setup() {
     let maxForce = 0.25;
     let jitter =  random(0, 0.7);
     let shouldFlee = Math.random() < 0.5; // 50% 的概率为 true, 50% 为 false
-    vehicle = new Vehicle(pos1, pos2, springLength, maxSpeed, maxForce, jitter, shouldFlee);
+
+    vehicle = new Vehicle(createVector(random(width), random(height)), springLength, maxSpeed, maxForce, jitter, shouldFlee);
+
     vehicles.push(vehicle);
   }
 
@@ -55,6 +58,7 @@ function draw() {
   // //  }
 
     for (let target of targets){
+      target.orbit();
     for(let vehicle of vehicles){
       vehicle.run(target); // 传递 target 给 Vehicle 对象，让它决定如何运动
     }
@@ -64,4 +68,8 @@ function draw() {
 
 function saveImage() {
   save(pg, "trajectory.png");
+}
+
+function randomBoolean() {
+  return Math.random() < 0.5; // Adjust the threshold as needed
 }
