@@ -20,9 +20,9 @@ function setup() {
     //随机设置vehicle逃离还是跟随
     let pos1 = createVector(random(width), random(height));
     let springLength = random(30,150);
-    let maxSpeed = 2;
-    let maxForce = 0.25;
-    let jitter =  random(0, 0.1);
+    let maxSpeed = 0.2;
+    let maxForce = 0.025;
+    let jitter =  random(0, 0.001);
     let shouldFlee = Math.random() < 0.5; // 50% 的概率为 true, 50% 为 false
     vehicle = new Vehicle(pos1, springLength, maxSpeed, maxForce, jitter, shouldFlee);
     vehicles.push(vehicle);
@@ -33,8 +33,8 @@ for(let i=0;i < numTargets ; i++){
   let targetType = clockwise;
   let targtStrength = 0;
   let targetSpeed = 0.3;
-  target = new Target(createVector(random(width), random(height)),targetType, targetSpeed, targtStrength);
-//  target = new Target(createVector(random(width), random(height)),0, 0.1, 0);
+  let targetRadius = 800;
+  target = new Target(createVector(random(width), random(height)),targetType, targetSpeed, targtStrength, targetRadius);
   targets.push(target);
 }
 }
@@ -46,11 +46,11 @@ function draw() {
       //adjust target movement 改变target运动方式
       target.orbit();
       target.show();
-
     for(let vehicle of vehicles){
       vehicle.run(target); // 传递 target 给 Vehicle 对象，让它决定如何运动
     }
   }
+  //pg.stroke(0,10);
   image(pg, 0, 0);
 }
 

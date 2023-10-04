@@ -30,9 +30,13 @@ class Vehicle {
 
     // 单独的方法用于更新和渲染 Vehicle
     run(target) {
-        this.physics.update();
+        //this.physics.update();
         for (let motor of this.motors) {
             let force;
+
+            if (p5.Vector.dist(target.pos, motor.pos) < target.targetRadius){
+              //只有在一定空间内才能被影响
+
             if (this.shouldFlee * target.targetType) {
                 force = motor.flee(target.pos);
                 fill(255,0,0);
@@ -44,8 +48,9 @@ class Vehicle {
             motor.update();
             motor.randomSwing(this.jitter);
             motor.show();
-            stroke(0,50);
+            pg.stroke(0,50);
             pg.point(motor.pos.x, motor.pos.y);
+            }
         }
 
 
@@ -58,5 +63,6 @@ class Vehicle {
             100,
             50
         );
+        this.physics.update();
     }
 }
