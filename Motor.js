@@ -67,6 +67,11 @@ class Motor{
     pop();
   }
 
+  updateMaxes(motorSpeed, motorForce) {
+    this.motorSpeed = motorSpeed;
+    this.motorForce = motorForce;
+  }
+
   // edges() {
   //   if (this.pos.x > width + this.r) {
   //     this.pos.x = -this.r;
