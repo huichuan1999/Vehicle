@@ -14,6 +14,7 @@ class Vehicle {
         this.motors[0] = new Motor(pos1.x, pos1.y, maxForce, maxSpeed);
         this.motors[1] = new Motor(pos1.x + springLength/2, pos1.y + springLength/2, maxForce, maxSpeed);
 
+
         // 将motor的粒子添加到物理世界中
         this.physics.addParticle(this.motors[0].particle);
         this.physics.addParticle(this.motors[1].particle);
@@ -34,14 +35,12 @@ class Vehicle {
         for (let motor of this.motors) {
             let force;
 
-            if (p5.Vector.dist(target.pos, motor.pos) < target.targetRadius){
+            if (p5.Vector.dist(target.pos, motor.pos) > target.targetRadius){
               //只有在一定空间内才能被影响
 
             if (this.shouldFlee * target.targetType) {
                 force = motor.flee(target.pos);
-                fill(255,0,0);
-            } else {
-              fill(0,255,0);
+              } else {
                 force = motor.seek(target.pos);
             }
             motor.applyForce(force);
@@ -54,15 +53,27 @@ class Vehicle {
         }
 
 
-        line(this.motors[0].pos.x, this.motors[0].pos.y, this.motors[1].pos.x, this.motors[1].pos.y);
-
-        noStroke();
-        text(
-            "Motor 0 velocity: (" + this.motors[0].vel.x.toFixed(2) + ", " + this.motors[0].vel.y.toFixed(2) + ") " + "  " +
-            "Motor 1 velocity: (" + this.motors[1].vel.x.toFixed(2) + ", " + this.motors[1].vel.y.toFixed(2) + ")",
-            100,
-            50
-        );
         this.physics.update();
+    }
+
+    //渲染vehicle
+    draw(){
+
+        if (this.shouldFlee){
+          stroke(255,0,0);
+        }
+        else {
+          stroke(0,0,255);
+        }
+
+              line(this.motors[0].pos.x, this.motors[0].pos.y, this.motors[1].pos.x, this.motors[1].pos.y);
+
+              noStroke();
+              text(
+                  "Motor 0 velocity: (" + this.motors[0].vel.x.toFixed(2) + ", " + this.motors[0].vel.y.toFixed(2) + ") " + "  " +
+                  "Motor 1 velocity: (" + this.motors[1].vel.x.toFixed(2) + ", " + this.motors[1].vel.y.toFixed(2) + ")",
+                  100,
+                  50
+              );
     }
 }

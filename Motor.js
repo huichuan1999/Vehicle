@@ -6,15 +6,11 @@ class Motor{
     this.acc = createVector(0,0);
     this.motorSpeed = motorSpeed;
     this.motorForce = motorForce;
-    // this.maxSpeed = 6;
-    // this.maxForce = 0.25;
-    this.r = 15;//三角形的大小
-
     this.particle = new toxi.physics2d.VerletParticle2D(new toxi.geom.Vec2D(x, y));
   }
 
   flee(target) {
-    return this.seek(target).mult(-1);
+    return this.seek(target).mult(-3); //adjust flee
   }
 
   seek(target){
@@ -51,12 +47,10 @@ class Motor{
     this.pos.y = this.particle.y;
 
     this.vel.add(this.acc);
-    this.vel.mult(0.9); // Apply damping
+    this.vel.mult(0.95); // Apply damping
     this.pos.add(this.vel);
     this.vel.limit(this.maxSpeed);
-
     this.particle.scaleVelocity(0.9); // 用于在物理模拟中增加阻尼效应
-
     this.acc.set(0,0);//在每一帧的末尾重置加速度向量,以防止加速度在连续的帧之间累积
 
   }
@@ -67,10 +61,9 @@ class Motor{
     push();
     translate(this.pos.x,this.pos.y);
     rotate(this.vel.heading());
-    // triangle(-this.r,-this.r/2,-this.r,this.r/2,this.r,0);
     rectMode(CENTER);
-    fill(255);
-    rect(0,0,20,20);
+    fill(0);
+    rect(0,0,10,10);
     pop();
   }
 

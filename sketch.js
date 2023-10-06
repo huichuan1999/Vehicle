@@ -2,7 +2,7 @@
 let targets = [];
 let pg;
 let vehicles = [];
-let numVehicles = 20;
+let numVehicles = 4;
 let lightSources = [];
 let numTargets = 8;
 
@@ -19,11 +19,11 @@ function setup() {
     //vehicle = new Vehicle(createVector(width/3, height/2), createVector(2*width/3, height/2), 200, 0.1,false);
     //随机设置vehicle逃离还是跟随
     let pos1 = createVector(random(width), random(height));
-    let springLength = random(30,150);
+    let springLength = random(20,80);
     let maxSpeed = 0.2;
     let maxForce = 0.025;
     let jitter =  random(0, 0.001);
-    let shouldFlee = Math.random() < 0.5; // 50% 的概率为 true, 50% 为 false
+    let shouldFlee = randomBoolean() ;
     vehicle = new Vehicle(pos1, springLength, maxSpeed, maxForce, jitter, shouldFlee);
     vehicles.push(vehicle);
   }
@@ -33,7 +33,7 @@ for(let i=0;i < numTargets ; i++){
   let targetType = clockwise;
   let targtStrength = 0;
   let targetSpeed = 0.3;
-  let targetRadius = 800;
+  let targetRadius = 200;
   target = new Target(createVector(random(width), random(height)),targetType, targetSpeed, targtStrength, targetRadius);
   targets.push(target);
 }
@@ -45,9 +45,10 @@ function draw() {
     for (let target of targets){
       //adjust target movement 改变target运动方式
       target.orbit();
-      target.show();
+      target.draw();
     for(let vehicle of vehicles){
       vehicle.run(target); // 传递 target 给 Vehicle 对象，让它决定如何运动
+      vehicle.draw();
     }
   }
   //pg.stroke(0,10);

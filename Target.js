@@ -9,7 +9,6 @@ class Target {
     this.targetSpeed = targetSpeed;
     this.center = createVector(width / 2, height / 2);
     this.radiusChangeRate = 0.2; // Rate of change in orbit radius
-    this.increasing = targetType;
     this.targetRadius = targetRadius;
     // Create an array to store the trace
 this.trace = [];
@@ -19,13 +18,14 @@ this.traceLength = random(100,1000);
   orbit() {
     let radius = p5.Vector.dist(this.pos, this.center);
 
-    // Adjust the orbit radius based on the 'increasing' property
-    // if (this.increasing) {
-    //   this.radius += this.radiusChangeRate;
-    //   } else {
-    //   this.radius -= this.radiusChangeRate;
-    //   }
-   radius += this.radiusChangeRate;
+    // Adjust the orbit radius based on the 'targetType' property
+    // if (this.targetType) {
+    //   radius += this.radiusChangeRate;
+    // }
+    // else{
+    //   radius -= this.radiusChangeRate;
+    // }
+
     let angle = atan2(this.pos.y - this.center.y, this.pos.x - this.center.x);
     if (this.targetType) {
        angle -= radians(this.targetSpeed);
@@ -45,17 +45,22 @@ this.traceLength = random(100,1000);
     }
   }
 
-  show() {
-    stroke(0,100);
+  draw() {
     noFill();
-    circle(this.pos.x,this.pos.y,50);
-    beginShape();
-    for (let point of this.trace) {
-      vertex(point.x, point.y);
-    }
-    endShape();
+      if (this.targetType){
+        stroke(255,0,0);
+      }
+      else {
+        stroke(0,0,255);
+      }
 
-    pg.stroke(255,0,0);
+     circle(this.pos.x,this.pos.y,this.targetRadius);
+     beginShape();
+     for (let point of this.trace) {
+       vertex(point.x, point.y);
+     }
+     endShape();
+    pg.stroke(255,0,0); //应该区别颜色！
     pg.point(this.pos.x, this.pos.y);
   }
 
