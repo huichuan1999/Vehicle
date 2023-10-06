@@ -10,7 +10,7 @@ class Motor{
   }
 
   flee(target) {
-    return this.seek(target).mult(-3); //adjust flee
+    return this.seek(target).mult(-1); //adjust flee
   }
 
   seek(target){

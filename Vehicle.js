@@ -38,7 +38,7 @@ class Vehicle {
             if (p5.Vector.dist(target.pos, motor.pos) > target.targetRadius){
               //只有在一定空间内才能被影响
 
-            if (this.shouldFlee * target.targetType) {
+            if (this.shouldFlee == target.targetType) {
                 force = motor.flee(target.pos);
               } else {
                 force = motor.seek(target.pos);
