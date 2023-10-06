@@ -11,7 +11,9 @@ let maxForce;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
   pg = createGraphics(windowWidth, windowHeight);
+
 
   createSaveButton();
   createSliders();
@@ -43,7 +45,7 @@ for(let i=0;i < numTargets ; i++){
 }
 
 function draw() {
-  background(255);
+  background(255, 170, 0);
 
   displaySliderValues();
 

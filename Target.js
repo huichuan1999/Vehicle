@@ -11,8 +11,8 @@ class Target {
     this.radiusChangeRate = 0.2; // Rate of change in orbit radius
     this.targetRadius = targetRadius;
     // Create an array to store the trace
-this.trace = [];
-this.traceLength = random(100,1000);
+    this.trace = [];
+    this.traceLength = random(100,1000);
   }
 
   orbit() {
@@ -48,10 +48,10 @@ this.traceLength = random(100,1000);
   draw() {
     noFill();
       if (this.targetType){
-        stroke(255,0,0);
+        stroke(255,150);
       }
       else {
-        stroke(0,0,255);
+        stroke(255,50);
       }
 
      circle(this.pos.x,this.pos.y,this.targetRadius);

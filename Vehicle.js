@@ -48,7 +48,7 @@ class Vehicle {
             motor.update();
             motor.randomSwing(this.jitter);
             motor.show();
-            pg.stroke(0,50);
+            pg.stroke(255,20);
             pg.point(motor.pos.x, motor.pos.y);
             }
         }
@@ -69,10 +69,10 @@ class Vehicle {
     draw(){
 
         if (this.shouldFlee){
-          stroke(255,0,0);
+          stroke(255,50);
         }
         else {
-          stroke(0,0,255);
+          stroke(0,50);
         }
 
               line(this.motors[0].pos.x, this.motors[0].pos.y, this.motors[1].pos.x, this.motors[1].pos.y);
