@@ -1,7 +1,7 @@
 
 class Vehicle {
 
-    constructor(pos1, springLength, maxSpeed, maxForce, jitter, shouldFlee) {
+    constructor(pos1, springLength, maxForce, maxSpeed, jitter, shouldFlee) {
 
         this.motors = [];
         this.physics = new toxi.physics2d.VerletPhysics2D();
@@ -11,8 +11,8 @@ class Vehicle {
 
         // 创建两个motor对象
 
-        this.motors[0] = new Motor(pos1.x, pos1.y);
-        this.motors[1] = new Motor(pos1.x + springLength/2, pos1.y + springLength/2);
+        this.motors[0] = new Motor(pos1.x, pos1.y, maxForce, maxSpeed);
+        this.motors[1] = new Motor(pos1.x + springLength/2, pos1.y + springLength/2, maxForce, maxSpeed);
 
         // 将motor的粒子添加到物理世界中
         this.physics.addParticle(this.motors[0].particle);
