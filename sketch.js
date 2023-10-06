@@ -8,6 +8,7 @@ let numTargets = 8;
 
 let maxSpeed;
 let maxForce;
+let jitter;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -27,7 +28,7 @@ function setup() {
     let springLength = random(20,80);
     // let maxSpeed = 0.2;
     // let maxForce = 0.025;
-    let jitter =  random(0, 0.001);
+    // let jitter =  random(0, 0.001);
     let shouldFlee = randomBoolean() ;
     vehicle = new Vehicle(pos1, springLength, maxSpeed, maxForce, jitter, shouldFlee);
     vehicles.push(vehicle);
@@ -52,6 +53,7 @@ function draw() {
   // 获取并显示滑块的值
   maxSpeed = speedSlider.value();
   maxForce = forceSlider.value();
+  jitter = jitterSlider.value();
 
     for (let target of targets){
       //adjust target movement 改变target运动方式
@@ -59,7 +61,7 @@ function draw() {
       target.draw();
     for(let vehicle of vehicles){
       vehicle.run(target); // 传递 target 给 Vehicle 对象，让它决定如何运动
-      vehicle.updateMaxes(maxSpeed, maxForce); // 更新每个车辆的 maxSpeed 和 maxForce
+      vehicle.updateMaxes(maxSpeed, maxForce, jitter); // 更新每个车辆的 maxSpeed 和 maxForce
       vehicle.draw();
     }
   }

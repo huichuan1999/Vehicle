@@ -2,8 +2,7 @@
 class Vehicle {
 
     constructor(pos1, springLength, maxForce, maxSpeed, jitter, shouldFlee) {
-        console.log("Creating a vehicle with:", maxSpeed, maxForce);
-
+    
         this.motors = [];
         this.physics = new toxi.physics2d.VerletPhysics2D();
         //一个布尔值，true是逃离，false是跟随
@@ -57,9 +56,10 @@ class Vehicle {
         this.physics.update();
     }
 
-    updateMaxes(maxSpeed, maxForce) {
+    updateMaxes(maxSpeed, maxForce, jitter) {
         this.maxSpeed = maxSpeed;
         this.maxForce = maxForce;
+        this.jitter = jitter;
         for (let motor of this.motors) {
             motor.updateMaxes(maxSpeed, maxForce);
         }
