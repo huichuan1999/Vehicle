@@ -2,7 +2,7 @@
 let targets = [];
 let pg;
 let vehicles = [];
-let numVehicles = 4;
+let numVehicles = 20;
 let lightSources = [];
 let numTargets = 8;
 
