@@ -2,19 +2,17 @@
 let targets = [];
 let pg;
 let vehicles = [];
-let numVehicles = 20;
+let numVehicles = 10;
 let lightSources = [];
 let numTargets = 8;
-
 let maxSpeed;
 let maxForce;
+let singlePanelWidth = 128;
+let singlePanelHeigh = 70;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-
-  pg = createGraphics(windowWidth, windowHeight);
-
-
+  createCanvas(singlePanelWidth*2, singlePanelHeigh*6);
+  pg = createGraphics(singlePanelWidth*2, singlePanelHeigh*6);
   createSaveButton();
   createSliders();
 
@@ -24,9 +22,9 @@ function setup() {
     //vehicle = new Vehicle(createVector(width/3, height/2), createVector(2*width/3, height/2), 200, 0.1,false);
     //随机设置vehicle逃离还是跟随
     let pos1 = createVector(random(width), random(height));
-    let springLength = random(20,80);
-    // let maxSpeed = 0.2;
-    // let maxForce = 0.025;
+    let springLength = random(5,20);
+     let maxSpeed = 0.2;
+     let maxForce = 0.025;
     let jitter =  random(0, 0.001);
     let shouldFlee = randomBoolean() ;
     vehicle = new Vehicle(pos1, springLength, maxSpeed, maxForce, jitter, shouldFlee);
@@ -38,15 +36,17 @@ for(let i=0;i < numTargets ; i++){
   let targetType = clockwise;
   let targtStrength = 0;
   let targetSpeed = 0.3;
-  let targetRadius = 200;
+  let targetRadius = 30;
   target = new Target(createVector(random(width), random(height)),targetType, targetSpeed, targtStrength, targetRadius);
   targets.push(target);
 }
 }
 
 function draw() {
-  background(255, 170, 0);
-
+//  background(255, 170, 0);
+  colorMode(HSB);
+  c = color(40, 100, 100);
+  background(c);
   displaySliderValues();
 
   // 获取并显示滑块的值

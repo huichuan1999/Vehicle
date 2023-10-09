@@ -60,7 +60,10 @@ class Target {
        vertex(point.x, point.y);
      }
      endShape();
-    pg.stroke(255,0,0); //应该区别颜色！
+
+    colorMode(HSB);
+    c = color(30, 100, 100);
+    pg.stroke(c); //应该区别颜色！
     pg.point(this.pos.x, this.pos.y);
   }
 
