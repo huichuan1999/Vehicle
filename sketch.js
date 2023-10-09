@@ -9,12 +9,19 @@ let maxSpeed;
 let maxForce;
 let singlePanelWidth = 128;
 let singlePanelHeigh = 70;
+const fr = 30;
+
 
 function setup() {
   createCanvas(singlePanelWidth*2, singlePanelHeigh*6);
   pg = createGraphics(singlePanelWidth*2, singlePanelHeigh*6);
   createSaveButton();
   createSliders();
+
+  frameRate(fr);
+
+  // initialize recorder
+  record();
 
   // 在这里我们只创建 Vehicles 对象
   for (let i = 0; i < numVehicles; i++) {

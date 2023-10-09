@@ -18,8 +18,8 @@ function displaySliderValues() {
   // 显示滑块的值
   fill(0);
   textSize(14);
-  text('Max Speed: ' + maxSpeed, width+250, 30);
-  text('Max Force: ' + maxForce, width+250, 70);
+  text('Max Speed: ' + maxSpeed, width+220, 30);
+  text('Max Force: ' + maxForce, width+220, 70);
 }
 
 function createSaveButton(){
