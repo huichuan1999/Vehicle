@@ -5,7 +5,7 @@ let targetPg;
 let vehicles = [];
 let numVehicles = 20;
 let lightSources = [];
-let numTargets = 5;
+let numTargets = 7;
 
 let maxSpeed;
 let maxForce;
@@ -49,6 +49,7 @@ function setup() {
 function draw() {
   //background(255, 170, 0);
   background(255);
+  targetPg.clear();
 
   displaySliderValues();
 
@@ -68,6 +69,7 @@ function draw() {
     }
   }
   //pg.stroke(0,10);
+  image(targetPg,0,0);
   image(pg, 0, 0);
 }
 

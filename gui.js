@@ -6,7 +6,7 @@ function createSliders() {
   speedSlider.position(10, 30);
 
   // 创建力量滑块，并设置其位置、范围和初始值
-  forceSlider = createSlider(0.001, 2, 0.02, 0.001);
+  forceSlider = createSlider(0.001, 2, 0.06, 0.001);
   forceSlider.position(10, 70);
 
   jitterSlider = createSlider(0.001, 2, 0.02, 0.001);
