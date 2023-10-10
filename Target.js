@@ -7,7 +7,7 @@ class Target {
     this.targetType = targetType;
     this.targtStrength = targtStrength;
     this.targetSpeed = targetSpeed;
-    this.center = createVector(width / 2, height / 2);
+    this.center = createVector(width / 2, height/2);
     this.radiusChangeRate = 0.2; // Rate of change in orbit radius
     this.targetRadius = targetRadius;
     // Create an array to store the trace
@@ -45,13 +45,17 @@ class Target {
     }
   }
 
+//   updateSpeed(targetSpeed) {
+//     this.targetSpeed = targetSpeed;
+// }
+
   draw() {
     noFill();
       if (this.targetType){
-        stroke(255,150);
+        stroke(0,150);
       }
       else {
-        stroke(255,50);
+        stroke(0,50);
       }
 
      circle(this.pos.x,this.pos.y,this.targetRadius);
@@ -60,8 +64,8 @@ class Target {
        vertex(point.x, point.y);
      }
      endShape();
-    pg.stroke(255,0,0); //应该区别颜色！
-    pg.point(this.pos.x, this.pos.y);
+    targetPg.stroke(50,0,0); //应该区别颜色！
+    targetPg.point(this.pos.x, this.pos.y);
   }
 
  flow(){

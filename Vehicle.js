@@ -47,7 +47,7 @@ class Vehicle {
             motor.update();
             motor.randomSwing(this.jitter);
             motor.show();
-            pg.stroke(255,20);
+            pg.stroke(0,10);
             pg.point(motor.pos.x, motor.pos.y);
             }
         }
