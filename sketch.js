@@ -11,11 +11,15 @@ let maxSpeed;
 let maxForce;
 let jitter;
 
+let lastSavedTime;
+
 function setup() {
   createCanvas(840, 840);
 
   pg = createGraphics(width, height);
   targetPg = createGraphics(width,height);
+
+  lastSavedTime = millis();  // 初始化上次保存时间为当前时间
 
   createSaveButton();
   createSliders();
@@ -53,6 +57,12 @@ function draw() {
 
   displaySliderValues();
 
+  // 检查是否已经过了20秒
+  if (millis() - lastSavedTime > 20000) {  // 20000毫秒 = 20秒
+    saveImageByTime();
+    lastSavedTime = millis();  // 更新上次保存时间
+  }
+
   // 获取并显示滑块的值
   maxSpeed = speedSlider.value();
   maxForce = forceSlider.value();
@@ -76,4 +86,12 @@ function draw() {
 
 function randomBoolean() {
   return Math.random() < 0.3; // Adjust the threshold as needed
+}
+
+function saveImageByTime() {
+  // 可以使用年月日时分秒来命名文件，以防覆盖之前的文件
+  let timestamp = year() + nf(month(), 2) + nf(day(), 2) + '-' +
+                  nf(hour(), 2) + nf(minute(), 2) + nf(second(), 2);
+  save(pg, "trajectory-" + timestamp + ".png");
+  //save(targetPg, "Target-" + timestamp + ".png");
 }
