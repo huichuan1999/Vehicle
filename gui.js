@@ -9,7 +9,7 @@ function createSliders() {
   forceSlider = createSlider(0.001, 2, 0.06, 0.001);
   forceSlider.position(10, 70);
 
-  jitterSlider = createSlider(0.001, 2, 0.02, 0.001);
+  jitterSlider = createSlider(0.001, 2, 0.01, 0.001);
   jitterSlider.position(10,110);
   
   // targetSpeedSlider = createSlider(0, 1, 0.3, 0.01);
