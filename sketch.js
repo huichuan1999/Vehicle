@@ -1,6 +1,7 @@
 //let target;
 let targets = [];
 let pg;
+let targetPg;
 let vehicles = [];
 let numVehicles = 10;
 let lightSources = [];
@@ -10,11 +11,16 @@ let maxForce;
 let singlePanelWidth = 128;
 let singlePanelHeigh = 70;
 const fr = 30;
-
+let c;
 
 function setup() {
+  //colorMode(HSB);
+  c = color(255, 170, 0);
+  background(c);
   createCanvas(singlePanelWidth*2, singlePanelHeigh*6);
   pg = createGraphics(singlePanelWidth*2, singlePanelHeigh*6);
+  targetPg = createGraphics(singlePanelWidth*2, singlePanelHeigh*6);
+
   createSaveButton();
   createSliders();
 
@@ -32,7 +38,7 @@ function setup() {
     let springLength = random(5,20);
      let maxSpeed = 0.2;
      let maxForce = 0.025;
-    let jitter =  random(0, 0.001);
+    let jitter =  0;
     let shouldFlee = randomBoolean() ;
     vehicle = new Vehicle(pos1, springLength, maxSpeed, maxForce, jitter, shouldFlee);
     vehicles.push(vehicle);
@@ -50,10 +56,18 @@ for(let i=0;i < numTargets ; i++){
 }
 
 function draw() {
-//  background(255, 170, 0);
-  colorMode(HSB);
-  c = color(40, 100, 100);
-  background(c);
+  background(255, 170, 0);
+ // colorMode(HSB);
+  //c = color(40, 100, 100);
+  //background(c);
+  if (frameCount % 10 === 0) {
+    pg.fill(255, 170, 0, 7);  // 橙色，半透明
+    pg.rect(0, 0, width, height);  // 绘制一个覆盖整个画布的矩形
+  }
+  
+  image(pg, 0, 0);
+  
+  targetPg.clear();
   displaySliderValues();
 
   // 获取并显示滑块的值
@@ -71,7 +85,7 @@ function draw() {
     }
   }
   //pg.stroke(0,10);
-  image(pg, 0, 0);
+  image(targetPg,0,0);
 }
 
 

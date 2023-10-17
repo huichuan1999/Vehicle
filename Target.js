@@ -46,26 +46,26 @@ class Target {
   }
 
   draw() {
-    noFill();
+    targetPg.noFill();
       if (this.targetType){
-        stroke(255,150);
+        targetPg.stroke(0,150);
       }
       else {
-        stroke(255,50);
+        targetPg.stroke(0,50);
       }
-
-     circle(this.pos.x,this.pos.y,this.targetRadius);
+    
+    targetPg.circle(this.pos.x,this.pos.y,this.targetRadius);
      beginShape();
      for (let point of this.trace) {
-       vertex(point.x, point.y);
+      //targetPg.stroke(50,20);
+      //targetPg.vertex(point.x, point.y);
+      targetPg.point(point.x, point.y);
      }
      endShape();
-
-    colorMode(HSB);
-    c = color(30, 100, 100);
-    pg.stroke(c); //应该区别颜色！
-    pg.point(this.pos.x, this.pos.y);
+    //targetPg.stroke(50,0,0); //应该区别颜色！
+    //targetPg.point(this.pos.x, this.pos.y);
   }
+
 
  flow(){
 
