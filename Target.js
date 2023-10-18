@@ -48,12 +48,12 @@ class Target {
   draw() {
     targetPg.noFill();
       if (this.targetType){
-        targetPg.stroke(0,150);
+        targetPg.stroke(255,150);
       }
       else {
-        targetPg.stroke(0,50);
+        targetPg.stroke(255,50);
       }
-    
+
     targetPg.circle(this.pos.x,this.pos.y,this.targetRadius);
      beginShape();
      for (let point of this.trace) {

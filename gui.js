@@ -16,7 +16,7 @@ function displaySliderValues() {
   maxForce = forceSlider.value();
 
   // 显示滑块的值
-  fill(0);
+  fill(100);
   textSize(14);
   text('Max Speed: ' + maxSpeed, width+220, 30);
   text('Max Force: ' + maxForce, width+220, 70);
