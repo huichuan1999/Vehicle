@@ -2,6 +2,7 @@
 let targets = [];
 let pg;
 let targetPg;
+
 let vehicles = [];
 let numVehicles = 10;
 let lightSources = [];
@@ -183,6 +184,10 @@ function draw() {
   image(pg, 0, 0);
 
   targetPg.clear();
+  if(frameCount % 1170 == 0)pg.clear();//每隔1000帧清空轨迹画布
+  console.log(frameCount);
+  //pg.clear();
+  
   displaySliderValues();
 
   // 获取并显示滑块的值
