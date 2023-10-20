@@ -62,8 +62,9 @@ class Motor{
     translate(this.pos.x,this.pos.y);
     rotate(this.vel.heading());
     rectMode(CENTER);
-    noStroke();
-    fill(255);
+    stroke(255, 204, 0);
+    strokeWeight(0.1);
+    noFill();
     rect(0,0,10,10);
     pop();
   }

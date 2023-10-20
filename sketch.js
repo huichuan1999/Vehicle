@@ -143,7 +143,7 @@ function setup() {
 }
 
 function draw() {
-  background(255, 170, 0);
+  background(0);
 
   // if (frameCount % 10 === 0) {
   //   pg.fill(255, 170, 0, 7);  // 橙色，半透明
