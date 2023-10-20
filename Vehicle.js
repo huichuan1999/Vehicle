@@ -28,6 +28,8 @@ class Vehicle {
             0.1
         );
         this.physics.addSpring(spring);
+        this.pos1 = pos1;
+        this.springLength = springLength;
     }
 
     // 单独的方法用于更新和渲染 Vehicle
@@ -36,7 +38,7 @@ class Vehicle {
         for (let motor of this.motors) {
             let force;
 
-            if (p5.Vector.dist(target.pos, motor.pos) > target.targetRadius){
+            //if (p5.Vector.dist(target.pos, motor.pos) > target.targetRadius){
               //只有在一定空间内才能被影响
 
             if (this.shouldFlee == target.targetType) {
@@ -51,7 +53,7 @@ class Vehicle {
             pg.stroke(255,20);
             pg.point(motor.pos.x, motor.pos.y);
             }
-        }
+        //}
 
 
         this.physics.update();
@@ -64,6 +66,34 @@ class Vehicle {
             motor.updateMaxes(maxSpeed, maxForce);
         }
     }
+
+    // edgesWrap() {
+    // if (this.motors[0].pos.x > width) {
+    //   this.motors[0].pos.x = 0;
+    //   console.log(this.motors[0].pos.x,this.motors[0].pos.y);
+    // } 
+    // else if (this.motors[0].pos.x < 0) {
+    //   this.motors[0].pos.x = width;
+    // }
+    // if (this.motors[0].pos.y > height) {
+    //   this.motors[0].pos.y =0;
+    // } else if (this.motors[0].pos.y < 0) {
+    //   this.motors[0].pos.y = height;
+    // }
+    
+    // if (this.motors[1].pos.x > width) {
+    //   this.motors[1].pos.x = 0;
+    //   console.log(this.motors[1].pos.x,this.motors[1].pos.y);
+    // } 
+    // else if (this.motors[1].pos.x < 0) {
+    //   this.motors[1].pos.x = width;
+    // }
+    // if (this.motors[1].pos.y > height) {
+    //   this.motors[1].pos.y =0;
+    // } else if (this.motors[1].pos.y < 0) {
+    //   this.motors[1].pos.y = height;
+    // }
+  //}
 
     //渲染vehicle
     draw(){

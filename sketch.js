@@ -5,9 +5,10 @@ let targetPg;
 let vehicles = [];
 let numVehicles = 10;
 let lightSources = [];
-let numTargets = 8;
+let numTargets = 5;
 let maxSpeed;
 let maxForce;
+let targetSpeed;
 let screenWidth = 128 *2 *2;
 let screenHeight = 70 *6 *2;
 const fr = 30;
@@ -115,30 +116,43 @@ function setup() {
 
   // initialize recorder
   //record();
-  // 在这里我们只创建 Vehicles 对象
-  for (let i = 0; i < numVehicles; i++) {
-    //最后一个true是逃离，false是跟随
-    //vehicle = new Vehicle(createVector(width/3, height/2), createVector(2*width/3, height/2), 200, 0.1,false);
-    //随机设置vehicle逃离还是跟随
+  
+  //创建targets
+  let spaceBetween = height/numTargets;  // 每个椭圆之间的距离
+  //console.log(spaceBetween);
+  for(let i=0;i < numTargets ; i++){
+  let clockwise = i % 2 === 0;
+  let targetType = clockwise;
+  let targtStrength = 0;
+  targetSpeed = 0.3;
+
+  let radiusX = random(150, 200);
+  let radiusY = 40 + i*20;
+  let offsetY = i * spaceBetween;
+  let angle = random(TWO_PI)
+
+  let pos = createVector(
+	width / 2 + cos(angle) * radiusX,
+	height / 2 + offsetY + sin(angle) * radiusY
+  );
+
+  target = new Target(pos, targetType, targetSpeed, targtStrength, radiusX, radiusY, offsetY,angle);
+  targets.push(target);
+  //console.log(target.radiusY)
+}
+
+// 创建 Vehicles 对象
+for (let i = 0; i < numVehicles; i++) {
+
     let pos1 = createVector(random(width), random(height));
     let springLength = random(5,20);
-     let maxSpeed = 0.2;
-     let maxForce = 0.025;
+    maxSpeed = 0.5;
+    maxForce = 0.2;
     let jitter =  0;
     let shouldFlee = randomBoolean() ;
     vehicle = new Vehicle(pos1, springLength, maxSpeed, maxForce, jitter, shouldFlee);
     vehicles.push(vehicle);
   }
-
-  for(let i=0;i < numTargets ; i++){
-  let clockwise = i % 2 === 0;
-  let targetType = clockwise;
-  let targtStrength = 0;
-  let targetSpeed = 0.3;
-  let targetRadius = 30;
-  target = new Target(createVector(random(width), random(height)),targetType, targetSpeed, targtStrength, targetRadius);
-  targets.push(target);
-}
 
 }
 
@@ -174,14 +188,17 @@ function draw() {
   // 获取并显示滑块的值
   maxSpeed = speedSlider.value();
   maxForce = forceSlider.value();
+  targetSpeed = targetSpeedSlider.value();
 
     for (let target of targets){
       //adjust target movement 改变target运动方式
       target.orbit();
       target.draw();
+	  target.updateSpeed(targetSpeed);
     for(let vehicle of vehicles){
       vehicle.run(target); // 传递 target 给 Vehicle 对象，让它决定如何运动
       vehicle.updateMaxes(maxSpeed, maxForce); // 更新每个车辆的 maxSpeed 和 maxForce
+	  //vehicle.edgesWrap();
       vehicle.draw();
     }
   }

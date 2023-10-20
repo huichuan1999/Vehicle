@@ -16,6 +16,7 @@ class Motor{
   seek(target){
     //生成一个指向target的力
     let force = p5.Vector.sub(target,this.pos);
+    //console.log(target.pos);
 
     //不然magnitude太大了看起来会瞬间传送
      force.setMag(this.motorSpeed);
@@ -62,9 +63,12 @@ class Motor{
     translate(this.pos.x,this.pos.y);
     rotate(this.vel.heading());
     rectMode(CENTER);
-    noStroke();
-    fill(255);
+    //noStroke();
+    //fill(255);
+    stroke(255,70);
+    noFill();
     rect(0,0,10,10);
+
     pop();
   }
 

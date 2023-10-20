@@ -1,25 +1,31 @@
-let speedSlider, forceSlider;
+let speedSlider, forceSlider,targetSpeedSlider;
 
 function createSliders() {
-  // 创建速度滑块，并设置其位置、范围和初始值
-  speedSlider = createSlider(0.01, 10, 0.2, 0.01);
+  // 创建速度滑块，并设置其最小值，最大值，默认值，step
+  speedSlider = createSlider(0.01, 10, 0.5, 0.1);
   speedSlider.position(width+250, 30);
 
-  // 创建力量滑块，并设置其位置、范围和初始值
-  forceSlider = createSlider(0.001, 2, 0.02, 0.001);
+  // 创建力量滑块，并设置其最小值，最大值，默认值，step
+  forceSlider = createSlider(0.001, 2, 0.02, 0.01);
   forceSlider.position(width+250, 70);
+
+  // 创建targetSpeed滑块，并设置其最小值，最大值，默认值，step
+  targetSpeedSlider = createSlider(0.01,2,0.3,0.01)
+  targetSpeedSlider.position(width+250, 110);
 }
 
 function displaySliderValues() {
   // 获取滑块的值
   maxSpeed = speedSlider.value();
   maxForce = forceSlider.value();
+  targetSpeed = targetSpeedSlider.value();
 
   // 显示滑块的值
   fill(100);
   textSize(14);
   text('Max Speed: ' + maxSpeed, width+220, 30);
   text('Max Force: ' + maxForce, width+220, 70);
+  text('targetSpeed: ' + maxForce, width+220, 110);
 }
 
 function createSaveButton(){
