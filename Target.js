@@ -47,10 +47,11 @@ class Target {
     targetPg.noFill();
     //targetPg.strokeWeight(3);
       if (this.targetType){
-        targetPg.stroke(255,30,30,200);
+
+        targetPg.stroke(colorTarget1);
       }
       else {
-        targetPg.stroke(255,220,30,200);
+        targetPg.stroke(colorTarget2);
       }
 
     targetPg.ellipse(this.pos.x,this.pos.y,30*adjustment,30);

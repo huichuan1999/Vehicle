@@ -65,7 +65,7 @@ class Motor{
     rectMode(CENTER);
     //noStroke();
     //fill(255);
-    stroke(255,70);
+    stroke(colorMotor);
     noFill();
     rect(0,0,10,10);
 

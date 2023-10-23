@@ -13,8 +13,13 @@ let targetSpeed;
 let screenWidth = 128 *2 *2;
 let screenHeight = 70 *6 *2;
 const fr = 30;
-let c;
 
+let colorVehicle1;
+let colorVehicle2;
+let colorMotor;
+let colorTarget1;
+let colorTarget2;
+let colorTrajectory;
 //background
 
 
@@ -93,8 +98,15 @@ function setup() {
 
   //background
 
-  c = color(255, 170, 0);
-  background(c);
+  colorBackground = color(255, 170, 0);
+  colorVehicle1 = color(255, 104, 0);  //在这里改颜色
+  colorVehicle2 = color(255, 255, 0);
+  colorMotor = color(255,204,0,50);
+  colorTarget1 = color(255,30,30,200);
+  colorTarget2 = color(255,220,30,200);
+  colorTrajectory = color(255, 20);
+
+  background(colorBackground);
 
   createCanvas(screenWidth, screenHeight);
   pg = createGraphics(screenWidth, screenHeight);
