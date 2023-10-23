@@ -6,7 +6,7 @@ let targetPg;
 let vehicles = [];
 let numVehicles = 10;
 let lightSources = [];
-let numTargets = 5;
+let numTargets = 7;
 let maxSpeed;
 let maxForce;
 let targetSpeed;
@@ -66,6 +66,11 @@ let historygram_w;
 let historygram_h;
 
 
+let original_ratio;
+let target_ratio;
+let adjustment;
+
+
 function preload(){
 	// Sound File
 	mic= loadSound("Asset/Sound/noise1min.mp3");
@@ -95,6 +100,10 @@ function setup() {
   pg = createGraphics(screenWidth, screenHeight);
   targetPg = createGraphics(screenWidth, screenHeight);
 
+  original_ratio = width / height;
+  target_ratio = 1 / 3; //最终画布比例1:3
+  adjustment =  original_ratio / target_ratio ;//变换椭圆的时候与高度相乘的调整值
+
   createSaveButton();
   createSliders();
   frameRate(fr);
@@ -119,27 +128,29 @@ function setup() {
   //record();
   
   //创建targets
-  let spaceBetween = height/numTargets;  // 每个椭圆之间的距离
-  //console.log(spaceBetween);
+
   for(let i=0;i < numTargets ; i++){
   let clockwise = i % 2 === 0;
   let targetType = clockwise;
   let targtStrength = 0;
   targetSpeed = 0.3;
 
-  let radiusX = random(150, 200);
-  let radiusY = 40 + i*20;
-  let offsetY = i * spaceBetween;
-  let angle = random(TWO_PI)
+  let baseRadius = 50;
+  let increment = random(20,100); //同心圆每一个比上一个的直径增加值
+  let radiusY = baseRadius + i * increment;
+  let radiusX = radiusY * adjustment; //同心圆宽度乘以调整值
+  let offsetY = random(-200,200);
+  let angle = random(TWO_PI); //随机起始角度
 
   let pos = createVector(
 	width / 2 + cos(angle) * radiusX,
-	height / 2 + offsetY + sin(angle) * radiusY
+	height / 2 + sin(angle) * radiusY
   );
 
-  target = new Target(pos, targetType, targetSpeed, targtStrength, radiusX, radiusY, offsetY,angle);
+  target = new Target(pos, targetType, targetSpeed, targtStrength, radiusX, radiusY, offsetY, angle);
   targets.push(target);
-  //console.log(target.radiusY)
+
+ // console.log(target.radiusX,target.radiusY)
 }
 
 // 创建 Vehicles 对象
@@ -184,8 +195,8 @@ function draw() {
   image(pg, 0, 0);
 
   targetPg.clear();
-  if(frameCount % 1170 == 0)pg.clear();//每隔1000帧清空轨迹画布
-  console.log(frameCount);
+  //if(frameCount % 1170 == 0)pg.clear();//每隔1000帧清空轨迹画布
+  //console.log(frameCount);
   //pg.clear();
   
   displaySliderValues();

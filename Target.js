@@ -27,7 +27,8 @@ class Target {
      }
 
     this.pos.x = width / 2 + cos(this.angle) * this.radiusX;
-    this.pos.y = 70 + this.offsetY + sin(this.angle) * this.radiusY;
+    this.pos.y = height / 2 + sin(this.angle) * this.radiusY + this.offsetY;
+
 
     // Store the current position in the trace
     this.trace.push(this.pos.copy());
@@ -52,7 +53,7 @@ class Target {
         targetPg.stroke(255,220,30,200);
       }
 
-    targetPg.circle(this.pos.x,this.pos.y,30);
+    targetPg.ellipse(this.pos.x,this.pos.y,30*adjustment,30);
      beginShape();
      for (let point of this.trace) {
       //targetPg.stroke(50,20);
