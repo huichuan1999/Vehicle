@@ -10,8 +10,8 @@ let numTargets = 7;
 let maxSpeed;
 let maxForce;
 let targetSpeed;
-let screenWidth = 128 *2 *2;
-let screenHeight = 70 *6 *2;
+let screenWidth = 256 *2;
+let screenHeight = 768;
 const fr = 30;
 
 let colorVehicle1;
@@ -114,12 +114,12 @@ function setup() {
 
   original_ratio = width / height;
   target_ratio = 1 / 3; //最终画布比例1:3
-  adjustment =  original_ratio / target_ratio ;//变换椭圆的时候与高度相乘的调整值
+  //adjustment =  original_ratio / target_ratio ;//变换椭圆的时候与高度相乘的调整值
 
   createSaveButton();
   createSliders();
   frameRate(fr);
-
+	adjustment = 1;
   mic.play();
 
   //shader
@@ -138,7 +138,7 @@ function setup() {
 
   // initialize recorder
   //record();
-  
+
   //创建targets
 
   for(let i=0;i < numTargets ; i++){
@@ -202,15 +202,20 @@ function draw() {
   translate(width / 2, height / 2);
 	rotate(PI/2);
 	image(historygram, width-vx, -height / 2);
+//	image(historygram, width-vx, -height / 2);
   pop();
 
+ //给图层加入混合模式
+  push();
+	blendMode(DODGE);
   image(pg, 0, 0);
-
+	pop();
   targetPg.clear();
+
   //if(frameCount % 1170 == 0)pg.clear();//每隔1000帧清空轨迹画布
   //console.log(frameCount);
   //pg.clear();
-  
+
   displaySliderValues();
 
   // 获取并显示滑块的值
@@ -230,7 +235,7 @@ function draw() {
       vehicle.draw();
     }
   }
-  //pg.stroke(0,10);
+
   image(targetPg,0,0);
 }
 

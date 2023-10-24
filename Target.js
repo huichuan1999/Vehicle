@@ -4,14 +4,14 @@ class Target {
     this.radiusX = radiusX;  // 椭圆的x轴半径
     this.radiusY = radiusY;  // 椭圆的y轴半径
     this.offsetY = offsetY;  // 垂直偏移量
-    
+
     this.pos = pos;
 
     this.targetType = targetType;
     this.targtStrength = targtStrength;
     this.targetSpeed = targetSpeed;
     this.center = createVector(width / 2, height / 2);
-    
+
     // Create an array to store the trace
     this.trace = [];
     this.traceLength = random(100,1000);
@@ -53,7 +53,8 @@ class Target {
       else {
         targetPg.stroke(colorTarget2);
       }
-
+    targetPg.strokeWeight(2);
+    //targetPg.fill(255,204,0,100);
     targetPg.ellipse(this.pos.x,this.pos.y,30*adjustment,30);
      beginShape();
      for (let point of this.trace) {
