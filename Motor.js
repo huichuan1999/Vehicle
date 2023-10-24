@@ -61,13 +61,13 @@ class Motor{
     strokeWeight(2);
     push();
     translate(this.pos.x,this.pos.y);
-    rotate(this.vel.heading());
+    //rotate(this.vel.heading()); //取消Motor自动旋转
     rectMode(CENTER);
     //noStroke();
     //fill(255);
     stroke(colorMotor);
     noFill();
-    rect(0,0,10,10);
+    rect(0,0,10*adjustment,10);
 
     pop();
   }
