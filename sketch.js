@@ -114,7 +114,7 @@ function setup() {
   colorVehicle2 = color(255, 255, 0);
   colPicVehicle2 = createColorPicker("yellow");
   colorMotor = color(255,204,0,50);
-  colPicMotor = createColorPicker("red");
+  colPicMotor = createColorPicker("white");
   colorTarget1 = color(255,30,30,200);
   colPicTarget1 = createColorPicker("red");
   colorTarget2 = color(255,220,30,200);
@@ -133,6 +133,7 @@ function setup() {
   //adjustment =  original_ratio / target_ratio ;//变换椭圆的时候与高度相乘的调整值
 
   createSaveButton();
+  createSettingButton();
   createSliders();
   frameRate(fr);
 	adjustment = 1;
@@ -259,8 +260,10 @@ function draw() {
       vehicle.draw();
     }
   }
-  image(targetPg,0,0);
-
+  push();
+  blendMode(DODGE);
+    image(targetPg,0,0);
+  pop();
 }
 
 function createSignal(){
