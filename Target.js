@@ -47,14 +47,14 @@ class Target {
     targetPg.noFill();
     //targetPg.strokeWeight(3);
       if (this.targetType){
-
+        //targetPg.fill(colorTarget1);
         targetPg.stroke(colorTarget1);
       }
       else {
+        //targetPg.fill(colorTarget2);
         targetPg.stroke(colorTarget2);
       }
     targetPg.strokeWeight(2);
-    //targetPg.fill(255,204,0,100);
     targetPg.ellipse(this.pos.x,this.pos.y,30*adjustment,30);
      beginShape();
      for (let point of this.trace) {

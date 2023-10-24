@@ -104,7 +104,7 @@ function setup() {
   colorMotor = color(255,204,0,50);
   colorTarget1 = color(255,30,30,200);
   colorTarget2 = color(255,220,30,200);
-  colorTrajectory = color(255, 20);
+  colorTrajectory = color(255,255, 100);
 
   background(colorBackground);
 

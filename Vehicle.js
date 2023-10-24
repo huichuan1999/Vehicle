@@ -56,7 +56,7 @@ class Vehicle {
       motor.update();
       motor.randomSwing(this.jitter);
       motor.show();
-      pg.stroke(colorTrajectory);
+      pg.stroke(colorTrajectory,10);
       pg.circle(motor.pos.x, motor.pos.y,1);
 
       // Store the current position in the trace
