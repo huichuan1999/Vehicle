@@ -148,10 +148,10 @@ function setup() {
   targetSpeed = 0.3;
 
   let baseRadius = 50;
-  let increment = random(20,100); //同心圆每一个比上一个的直径增加值
+  let increment = random(20,50); //同心圆每一个比上一个的直径增加值
   let radiusY = baseRadius + i * increment;
   let radiusX = radiusY * adjustment; //同心圆宽度乘以调整值
-  let offsetY = random(-200,200);
+  let offsetY = 0;
   let angle = random(TWO_PI); //随机起始角度
 
   let pos = createVector(
