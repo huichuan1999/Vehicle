@@ -20,6 +20,15 @@ let colorMotor;
 let colorTarget1;
 let colorTarget2;
 let colorTrajectory;
+
+// Create a variable for color-picker object 
+var colPicTarget1; 
+var colPicTarget2;
+var colPicTrajectory;
+var colPicMotor;
+var colPicVehicle1;
+var colPicVehicle2;
+
 //background
 
 
@@ -97,14 +106,21 @@ function preload(){
 function setup() {
 
   //background
+  // Create a color-picker object  
 
   colorBackground = color(255, 170, 0);
   colorVehicle1 = color(255, 104, 0);  //在这里改颜色
+  colPicVehicle1 = createColorPicker("yellow");
   colorVehicle2 = color(255, 255, 0);
+  colPicVehicle2 = createColorPicker("yellow");
   colorMotor = color(255,204,0,50);
+  colPicMotor = createColorPicker("red");
   colorTarget1 = color(255,30,30,200);
+  colPicTarget1 = createColorPicker("red");
   colorTarget2 = color(255,220,30,200);
+  colPicTarget2 = createColorPicker("yellow");
   colorTrajectory = color(255,255, 100);
+  colPicTrajectory = createColorPicker("white");
 
   background(colorBackground);
 
@@ -182,6 +198,14 @@ for (let i = 0; i < numVehicles; i++) {
 
 function draw() {
   background(255, 170, 0);
+  
+  colorBackground = color(255, 170, 0);
+  colorVehicle1 = color(colPicVehicle1.color());  //在这里改颜色
+  colorVehicle2 = color(colPicVehicle2.color());
+  colorMotor = color(colPicMotor.color());
+  colorTarget1 = color(colPicTarget1.color());
+  colorTarget2 = color(colPicTarget2.color());
+  colorTrajectory = color(colPicTrajectory.color());
 
   // if (frameCount % 10 === 0) {
   //   pg.fill(255, 170, 0, 7);  // 橙色，半透明
@@ -235,8 +259,8 @@ function draw() {
       vehicle.draw();
     }
   }
-
   image(targetPg,0,0);
+
 }
 
 function createSignal(){
