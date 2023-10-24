@@ -34,10 +34,12 @@ function createSaveButton() {
 }
 
 function createSettingButton() {
-  let saveSettingButton = createButton("Save Settings");
+  //let saveSettingButton = createButton("Save Settings");
+  let saveSettingButton = select('#saveSettings')
   saveSettingButton.mousePressed(saveSettings);
   //let loadButton = createButton("Load Settings");
-  //loadButton.mousePressed(loadSettings);
+  let loadButton = select('#loadSettings')
+  loadButton.mousePressed(loadSettings);
 }
 
 function saveSettings() {
@@ -57,8 +59,32 @@ function saveSettings() {
   saveJSON(settings, 'settings.json');
 }
 
-function LoadSettings() {
+function loadSettings() {
+  select('#fileInput').elt.click();
+  select('#fileInput').changed(handleFile);
+}
 
+function handleFile(file) {
+  console.log(file.type);
+  if (file.type === 'appliction/json') {
+
+  // let fileExtension = splitTokens(file.name,'.').pop();//get  .json
+  // if(fileExtension === 'json'){
+    let settings = JSON.parse(file.data);
+    console.log("load settings");
+    speedSlider.value(settings.maxSpeed);
+    forceSlider.value(settings.maxForce);
+    targetSpeedSlider.value(settings.targetSpeed);
+
+    colPicVehicle1.color(settings.colorVehicle1),
+    colPicVehicle2.color(settings.colorVehicle2),
+    colPicMotor.color(settings.colorMotor),
+    colPicTarget1.color(settings.colorTarget1),
+    colPicTarget2.color(settings.colorTarget2),
+    colPicTrajectory.color(settings.colorTrajectory);
+  }else{
+    console.error("Not a JSON file!");
+  }
 }
 
 
