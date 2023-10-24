@@ -6,7 +6,7 @@ function createSliders() {
   speedSlider.position(width + 250, 30);
 
   // 创建力量滑块，并设置其最小值，最大值，默认值，step
-  forceSlider = createSlider(0.001, 2, 0.02, 0.01);
+  forceSlider = createSlider(0.001, 0.5, 0.02, 0.01);
   forceSlider.position(width + 250, 70);
 
   // 创建targetSpeed滑块，并设置其最小值，最大值，默认值，step
@@ -29,7 +29,8 @@ function displaySliderValues() {
 }
 
 function createSaveButton() {
-  let saveButton = createButton("Save Image");
+  let saveButton = select('#saveImage');
+  //let saveButton = createButton("Save Image");
   saveButton.mousePressed(saveImage);
 }
 

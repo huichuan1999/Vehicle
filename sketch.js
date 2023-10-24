@@ -4,7 +4,7 @@ let pg;
 let targetPg;
 
 let vehicles = [];
-let numVehicles = 10;
+let numVehicles = 15;
 let lightSources = [];
 let numTargets = 7;
 let maxSpeed;
@@ -116,11 +116,11 @@ function setup() {
   colorMotor = color(255,204,0,50);
   colPicMotor = createColorPicker("white");
   colorTarget1 = color(255,30,30,200);
-  colPicTarget1 = createColorPicker("red");
+  colPicTarget1 = createColorPicker("gray");
   colorTarget2 = color(255,220,30,200);
-  colPicTarget2 = createColorPicker("yellow");
+  colPicTarget2 = createColorPicker("gray");
   colorTrajectory = color(255,255, 100);
-  colPicTrajectory = createColorPicker("white");
+  colPicTrajectory = createColorPicker("D4dD4D4");
 
   background(colorBackground);
 
@@ -165,7 +165,7 @@ function setup() {
   targetSpeed = 0.3;
 
   let baseRadius = 50;
-  let increment = random(20,50); //同心圆每一个比上一个的直径增加值
+  let increment = random(20,70); //同心圆每一个比上一个的直径增加值
   let radiusY = baseRadius + i * increment;
   let radiusX = radiusY * adjustment; //同心圆宽度乘以调整值
   let offsetY = 0;

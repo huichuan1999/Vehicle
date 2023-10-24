@@ -5,3 +5,8 @@ html, body {
 canvas {
   display: block;
 }
+button{
+  margin-top:70px;
+  display:flex;
+  justify-content: right;
+}

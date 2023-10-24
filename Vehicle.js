@@ -44,8 +44,8 @@ class Vehicle {
     for (let motor of this.motors) {
       let force;
 
-      //if (p5.Vector.dist(target.pos, motor.pos) > target.targetRadius){
-      //只有在一定空间内才能被影响
+      if (p5.Vector.dist(target.pos, motor.pos) >10 && p5.Vector.dist(target.pos, motor.pos) > 30){
+      //只有在一定空间内才能被影响 防止它们挤在一起
 
       if (this.shouldFlee == target.targetType) {
         force = motor.flee(target.pos);
@@ -68,7 +68,7 @@ class Vehicle {
       // }
 
     }
-    //}
+    }
 
 
     this.physics.update();
