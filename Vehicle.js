@@ -7,7 +7,7 @@ class Vehicle {
     this.motors = [];
     this.physics = new toxi.physics2d.VerletPhysics2D();
     //设置边界，让它们不要飞出去
-    //this.physics.setWorldBounds(new toxi.geom.Rect(0, 0, width, height));
+    this.physics.setWorldBounds(new toxi.geom.Rect(0, 0, width, height));
     //一个布尔值，true是逃离，false是跟随
     this.shouldFlee = shouldFlee;
     this.jitter = jitter;
@@ -82,7 +82,7 @@ class Vehicle {
   separate(vehicles) {
     //console.log("Separating from", vehicles);
 
-    let desiredSeparation = 35.0;  // 这是车辆应保持的最小距离
+    let desiredSeparation = 15.0;  // 这是车辆应保持的最小距离
     let steer = createVector(0, 0);
     let count = 0;
   

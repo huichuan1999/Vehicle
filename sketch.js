@@ -110,7 +110,7 @@ function setup() {
 
   colorBackground = color(255, 170, 0);
   colorVehicle1 = color(255, 104, 0);  //在这里改颜色
-  colPicVehicle1 = createColorPicker("yellow");
+  colPicVehicle1 = createColorPicker("red");
   colorVehicle2 = color(255, 255, 0);
   colPicVehicle2 = createColorPicker("yellow");
   colorMotor = color(255,204,0,50);
