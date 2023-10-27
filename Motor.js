@@ -56,6 +56,11 @@ class Motor{
 
   }
 
+  get position() {
+    return this.pos.copy();
+  }
+  
+
   show(){
     stroke(0);
     strokeWeight(2);

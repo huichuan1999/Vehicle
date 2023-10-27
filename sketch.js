@@ -120,7 +120,7 @@ function setup() {
   colorTarget2 = color(255,220,30,200);
   colPicTarget2 = createColorPicker("gray");
   colorTrajectory = color(255,255, 100);
-  colPicTrajectory = createColorPicker("D4dD4D4");
+  colPicTrajectory = createColorPicker("gray");
 
   background(colorBackground);
 
@@ -164,7 +164,7 @@ function setup() {
   let targtStrength = 0;
   targetSpeed = 0.3;
 
-  let baseRadius = 50;
+  let baseRadius = 100;
   let increment = random(20,70); //同心圆每一个比上一个的直径增加值
   let radiusY = baseRadius + i * increment;
   let radiusX = radiusY * adjustment; //同心圆宽度乘以调整值
@@ -248,18 +248,17 @@ function draw() {
   maxForce = forceSlider.value();
   targetSpeed = targetSpeedSlider.value();
 
-    for (let target of targets){
-      //adjust target movement 改变target运动方式
-      target.orbit();
-      target.draw();
-	  target.updateSpeed(targetSpeed);
-    for(let vehicle of vehicles){
-      vehicle.run(target); // 传递 target 给 Vehicle 对象，让它决定如何运动
-      vehicle.updateMaxes(maxSpeed, maxForce); // 更新每个车辆的 maxSpeed 和 maxForce
-	  //vehicle.edgesWrap();
-      vehicle.draw();
-    }
+  for (let target of targets){
+	target.orbit();
+	target.draw();
+	target.updateSpeed(targetSpeed);
   }
+  for(let vehicle of vehicles){
+	vehicle.run(vehicles, targets); // 传递所有目标给 Vehicle 对象
+	vehicle.updateMaxes(maxSpeed, maxForce);
+	vehicle.draw();
+  }
+  
   push();
   blendMode(DODGE);
     image(targetPg,0,0);
