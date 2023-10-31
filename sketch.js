@@ -87,7 +87,7 @@ let adjustment;
 
 function preload(){
 	// Sound File
-	mic= loadSound("Asset/Sound/noise1min.mp3");
+	mic= loadSound("Asset/Sound/noise1.mp3");
 	fft = new p5.FFT(0.0, 1024);
 	mic.connect(fft);
 	mic.onended(soundloop);
@@ -148,8 +148,10 @@ function setup() {
 	pixelDensity(1);
 	noStroke();
  //signal
-  historygram_w = windowWidth*20;
+  historygram_w = windowWidth*50;
+  console.log(historygram_w);
   historygram_h = windowHeight;
+  console.log(historygram_h);
 
   historygram = createGraphics(historygram_w,historygram_h);
 
