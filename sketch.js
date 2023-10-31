@@ -84,10 +84,13 @@ let original_ratio;
 let target_ratio;
 let adjustment;
 
+let decreasing = true; // 用于跟踪是否正在减少tint值
+let alphaValue = 255; // 初始化透明度值
+
 
 function preload(){
 	// Sound File
-	mic= loadSound("Asset/Sound/noise1.mp3");
+	mic= loadSound("Asset/Sound/Sound15min.mp3");
 	fft = new p5.FFT(0.0, 1024);
 	mic.connect(fft);
 	mic.onended(soundloop);
@@ -116,11 +119,11 @@ function setup() {
   colorMotor = color(255,204,0,50);
   colPicMotor = createColorPicker("white");
   colorTarget1 = color(255,30,30,200);
-  colPicTarget1 = createColorPicker("gray");
+  colPicTarget1 = createColorPicker("#FFC800");
   colorTarget2 = color(255,220,30,200);
-  colPicTarget2 = createColorPicker("gray");
+  colPicTarget2 = createColorPicker("#FDFFA3");
   colorTrajectory = color(255,255, 100);
-  colPicTrajectory = createColorPicker("gray");
+  colPicTrajectory = createColorPicker("#D7D4B2");
 
   background(colorBackground);
 
@@ -235,13 +238,37 @@ function draw() {
  //给图层加入混合模式
   push();
 	blendMode(DODGE);
+	console.log(frameCount);
+  //image(pg, 0, 0);
+  // 检查当前帧数，当每次达到3000的倍数时开始改变轨迹画布（pg)透明度
+  if(frameCount % 3000 < 200) {
+    if (decreasing) {
+      alphaValue -= 2.55;  // 在100帧内逐渐降低
+      if (alphaValue <= 0) {
+        decreasing = false; // 改变方向，开始增加
+        alphaValue = 0;
+        pg.clear(); // 清除画布内容
+      }
+    } else {
+      alphaValue += 2.55;  // 在100帧内逐渐增加
+      if (alphaValue >= 255) {
+        decreasing = true; // 改变方向，开始减少
+        alphaValue = 255;
+      }
+    }
+  }
+
+  tint(255, alphaValue); // 应用 tint 值
   image(pg, 0, 0);
+
+
 	pop();
   targetPg.clear();
 
-  //if(frameCount % 1170 == 0)pg.clear();//每隔1000帧清空轨迹画布
-  //console.log(frameCount);
-  //pg.clear();
+//   if(frameCount % 1170 == 0)pg.clear();//每隔1000帧清空轨迹画布
+//   console.log(frameCount);
+//   tint(255, 0);  // 第二个参数是透明度 (0-255)
+//   pg.clear();
 
   displaySliderValues();
 
@@ -262,7 +289,12 @@ function draw() {
   }
   
   push();
-  blendMode(DODGE);
+  //blendMode(DODGE);
+//     image(targetPg,0,0);
+//   pop();
+//   push();
+  tint(255, 150);  // 第二个参数是透明度 (0-255)
+  blendMode(HARD_LIGHT);
     image(targetPg,0,0);
   pop();
 }
